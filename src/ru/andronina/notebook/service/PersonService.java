@@ -6,6 +6,7 @@ import ru.andronina.notebook.model.Person;
 import ru.andronina.notebook.repository.EmployeeRepository;
 import ru.andronina.notebook.repository.ManagerRepository;
 
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -38,23 +39,35 @@ public class PersonService {
         employeeRepository.add(employee);
     }
 
-    public Set<Person> getPeopleByCriteria(String name, String surname, String phoneNumber) {
-        Set<Person> peopleFound = new TreeSet<>();
+    public Person getPersonByCriteria(String name, String surname, String phoneNumber) {
         for (Person person : people) {
             if (person.getName().equals(name) && person.getSurname().equals(surname) && person.getPhoneNumber().equals(phoneNumber)) {
-                peopleFound.add(person);
+                return person;
             }
         }
-        return peopleFound;
+        return null;
     }
 
     public void removePerson(Person person) {
-        for (Person p : managerRepository.getAll()) {
-            if (p.getId().equals(person.getId())) managerRepository.delete((Manager) person);
-        }
-        for (Person p : employeeRepository.getAll()) {
-            if (p.getId().equals(person.getId())) employeeRepository.delete((Employee) person);
-        }
+        if (person.getClass().getSimpleName().equals("Employee")) {
+            removeEmployee((Employee) person);
+        } else removeManager((Manager) person);
 
+    }
+
+    private void removeManager(Manager manager) {
+        managerRepository.delete(manager);
+    }
+
+    private void removeEmployee(Employee employee) {
+        employeeRepository.delete(employee);
+    }
+
+    public void loadPeopleInRepository(List<Person> people) {
+        for (Person p : people) {
+            if (p.getClass().getSimpleName().equals("Employee")) {
+                employeeRepository.add((Employee) p);
+            } else managerRepository.add((Manager) p);
+        }
     }
 }

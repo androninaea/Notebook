@@ -10,8 +10,11 @@ public class ManagerRepository implements AbstractRepository<Manager, String> {
     @Override
     public void add(Manager value) {
         String key = UUID.randomUUID().toString();
-        value.setId(key);
-        managers.put(key, value);
+        if (value.getId() == null) {
+            value.setId(key);
+            managers.put(key, value);
+        } else managers.put(value.getId(), value);
+
     }
 
     @Override

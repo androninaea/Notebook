@@ -3,6 +3,7 @@ package ru.andronina.notebook.builder;
 import ru.andronina.notebook.model.Employee;
 
 import java.util.GregorianCalendar;
+import java.util.InputMismatchException;
 
 public class EmployeeBuilder implements Builder {
     private static final int MAX_YEAR = new GregorianCalendar().getWeekYear() - 18;
@@ -17,11 +18,15 @@ public class EmployeeBuilder implements Builder {
         employee.setSurname(readValue().nextLine());
         while (true) {
             System.out.println("Enter the year of birth: ");
-            int year = readValue().nextInt();
-            if (check(year)) {
-                employee.setYearOfBirth(year);
-                break;
-            } else System.out.println("Invalid year of birth");
+            try {
+                int year = readValue().nextInt();
+                if (checkYear(year)) {
+                    employee.setYearOfBirth(year);
+                    break;
+                } else System.out.println("Invalid year of birth");
+            } catch (InputMismatchException ex) {
+                System.out.println("Invalid operation number\n");
+            }
         }
         System.out.println("Enter phone number: ");
         employee.setPhoneNumber(readValue().nextLine());
@@ -30,7 +35,7 @@ public class EmployeeBuilder implements Builder {
         return employee;
     }
 
-    private boolean check(int year) {
+    private boolean checkYear(int year) {
         if (year >= MIN_YEAR && year <= MAX_YEAR) {
             return true;
         }

@@ -15,7 +15,6 @@ public class Person implements Comparable<Person> {
         return name;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
@@ -53,7 +52,7 @@ public class Person implements Comparable<Person> {
     }
 
     @Override
-    public int compareTo(Person o) {
+    public int compareTo(Person o) { //sort elements with type "Person" by surname and year of birth
         int result = Objects.compare(getSurname(), o.getSurname(), String::compareTo);
         if (result != 0) {
             return result;

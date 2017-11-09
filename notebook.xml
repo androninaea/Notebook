@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<people>
+    <person id="dd706c2a-44ca-46e9-9e5c-78e87de1b4e1">
+        <type>Employee</type>
+        <name>Peter</name>
+        <surname>Burns</surname>
+        <yearOfBirth>1992</yearOfBirth>
+        <phone>89056649778</phone>
+        <managerName>Lindsey Hensley</managerName>
+    </person>
+    <person id="dd706c1a-43ca-45e9-9e4c-89e87de7b4e1">
+        <type>Manager</type>
+        <name>Brian</name>
+        <surname>Collins</surname>
+        <yearOfBirth>1993</yearOfBirth>
+        <phone>89876579256</phone>
+        <department>Sales</department>
+    </person>
+    <person id="dd706c1a-43ca-68e9-9e4c-74e87de7b4e1">
+        <type>Employee</type>
+        <name>Katrina</name>
+        <surname>French</surname>
+        <yearOfBirth>1989</yearOfBirth>
+        <phone>89056549256</phone>
+        <managerName>Brian Collins</managerName>
+    </person>
+    <person id="dd706c1a-43ca-45e9-9e4c-74e87de7b4e1">
+        <type>Manager</type>
+        <name>Lindsey</name>
+        <surname>Hensley</surname>
+        <yearOfBirth>1990</yearOfBirth>
+        <phone>89876549256</phone>
+        <department>Sales</department>
+    </person>
+</people>

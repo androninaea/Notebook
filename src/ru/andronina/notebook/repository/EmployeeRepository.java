@@ -10,8 +10,11 @@ public class EmployeeRepository implements AbstractRepository<Employee, String> 
     @Override
     public void add(Employee value) {
         String key = UUID.randomUUID().toString();
-        value.setId(key);
-        employees.put(key, value);
+        if (value.getId() == null) {
+            value.setId(key);
+            employees.put(key, value);
+        } else employees.put(value.getId(), value);
+
     }
 
     @Override
